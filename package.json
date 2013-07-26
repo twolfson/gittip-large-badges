@@ -1,27 +1,44 @@
 {
-  "name": "node-js-sample",
-  "version": "0.0.2",
-  "description": "a sample node.js app for heroku",
-  "main": "web.js",
+  "name": "gittip-large-badges",
+  "description": "Generate large badges for Gittip.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/twolfson/gittip-large-badges",
+  "author": {
+    "name": "Todd Wolfson",
+    "email": "todd@twolfson.com",
+    "url": "http://twolfson.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/twolfson/gittip-large-badges.git"
+  },
+  "bugs": {
+    "url": "https://github.com/twolfson/gittip-large-badges/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/twolfson/gittip-large-badges/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "lib/gittip-large-badges",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node lib/gittip-large-badges.js",
+    "test": "mocha"
   },
   "dependencies": {
     "express": "~3.3.4"
   },
-  "engines": {
-    "node": "0.10.13",
-    "npm": "1.3.2"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/heroku/node-js-sample"
+  "devDependencies": {
+    "mocha": "~1.11.0",
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-watch": "~0.4.0"
   },
   "keywords": [
-    "node",
-    "heroku"
-  ],
-  "author": "Mark Pundsack",
-  "license": "BSD",
-  "gitHead": "90fd58e343c29e54fc1d4e19036595500b2bdc21"
+    "gittip",
+    "badge"
+  ]
 }
