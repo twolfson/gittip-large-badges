@@ -1,1 +1,1 @@
-web: node lib/gittip-large-badges.js
+web: NODE_ENV=production node lib/gittip-large-badges.js
