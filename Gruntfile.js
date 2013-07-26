@@ -26,6 +26,12 @@ module.exports = function(grunt) {
         }
       }
     },
+    curl: {
+      domvas: {
+        src: 'https://raw.github.com/pbakaus/domvas/master/src/domvas.js',
+        dest: 'lib/vendor/domvas.js'
+      }
+    },
     watch: {
       'default': {
         files: '<%= jshint.files %>',
@@ -37,6 +43,7 @@ module.exports = function(grunt) {
   // Load in grunt tasks
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-curl');
 
   // Default task.
   grunt.registerTask('default', ['jshint']);

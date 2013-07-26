@@ -37,7 +37,8 @@
   "devDependencies": {
     "mocha": "~1.11.0",
     "grunt-contrib-jshint": "~0.6.0",
-    "grunt-contrib-watch": "~0.4.0"
+    "grunt-contrib-watch": "~0.4.0",
+    "grunt-curl": "~1.1.1"
   },
   "keywords": [
     "gittip",
