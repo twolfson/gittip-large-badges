@@ -4,6 +4,12 @@
     <title>Badge</title>
   </head>
   <body>
-    <script data-gittip-username="twolfson" src="https://www.gittip.com/assets/widgets/0002.js" ></script>
+    <script>
+      // Find the username from the search
+      var username = window.location.search.slice(1);
+
+      // Synchronously load the widget
+      document.write('<script data-gittip-username="' + username + '" src="https://www.gittip.com/assets/widgets/0002.js" ></scr' + 'ipt>');
+    </script>
   </body>
 </html>
