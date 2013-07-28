@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Badge</title>
+    <script src="vendor/canvasquery.js"></script>
     <style>
       body {
         margin: 0;
@@ -34,15 +35,21 @@
         // Get the context
         var context = canvas.getContext('2d');
 
-        // Upper-left curve of rounded rectangle
+        // Start the rounded rectangle
         context.lineWidth = 2;
-        context.arc(6 + 1, 6 + 1, 6, Math.PI, 3 * Math.PI / 2);
-        context.stroke();
 
-        // Top edge of rounded rectangle
-        context.moveTo(6, 1);
-        context.lineTo(width - 6 - 1, 1);
-        context.stroke();
+        // // Upper-left curve of rounded rectangle
+        // context.arc(6 + 1, 6 + 1, 6, Math.PI, 3 * Math.PI / 2);
+        // context.stroke();
+
+        // // Top edge of rounded rectangle
+        // context.moveTo(6, 1);
+        // context.lineTo(width - 6 - 1, 1);
+        // context.stroke();
+
+        cq(canvas)
+          .roundRect(1, 1, width - 2, height - 2, 8)
+          .stroke();
       </script>
     </div>
   </body>
