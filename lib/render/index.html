@@ -2,7 +2,6 @@
 <html>
   <head>
     <title>Badge</title>
-    <script src="vendor/canvasquery.js"></script>
     <style>
       body {
         margin: 0;
@@ -31,9 +30,9 @@
 
         // Get the context and draw
         var context = canvas.getContext('2d');
-        cq(canvas)
-          .roundRect(1, 1, width - 2, height - 2, 6)
-          .stroke();
+        // context.arcTo(6, 6, 0, 0, 6);
+        context.arc(6, 6, 6, Math.PI, 3 * Math.PI / 2);
+        context.stroke();
       </script>
     </div>
   </body>
