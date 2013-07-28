@@ -27,9 +27,9 @@ module.exports = function(grunt) {
       }
     },
     curl: {
-      domvas: {
-        src: 'https://raw.github.com/pbakaus/domvas/master/src/domvas.js',
-        dest: 'lib/vendor/domvas.js'
+      'canvas-query': {
+        src: 'http://canvasquery.com/canvasquery.js',
+        dest: 'lib/render/vendor/canvasquery.js'
       }
     },
     watch: {

@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Badge</title>
+    <script src="vendor/canvasquery.js"></script>
     <style>
       body {
         margin: 0;
@@ -21,9 +22,18 @@
     <div>
       <canvas id="canvas"></canvas>
       <script>
+        // Find the canvas and define the height
         var canvas = document.getElementById('canvas'),
-            context = canvas.getContext('2d');
-        context.strokeRect(50, 50, 50, 50);
+            width = 116,
+            height = 71;
+        canvas.width = width;
+        canvas.height = height;
+
+        // Get the context and draw
+        var context = canvas.getContext('2d');
+        cq(canvas)
+          .roundRect(1, 1, width - 2, height - 2, 6)
+          .stroke();
       </script>
     </div>
   </body>
