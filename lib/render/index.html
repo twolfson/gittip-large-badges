@@ -17,5 +17,14 @@
       // Synchronously load the widget
       document.write('<script data-gittip-username="' + username + '" src="https://www.gittip.com/assets/widgets/0002.js" ></scr' + 'ipt>');
     </script>
+
+    <div>
+      <canvas id="canvas"></canvas>
+      <script>
+        var canvas = document.getElementById('canvas'),
+            context = canvas.getContext('2d');
+        context.strokeRect(50, 50, 50, 50);
+      </script>
+    </div>
   </body>
 </html>
