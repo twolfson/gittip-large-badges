@@ -19,7 +19,7 @@
       var username = window.location.search.slice(1);
 
       // Synchronously load the widget
-      // document.write('<script data-gittip-username="' + username + '" src="https://www.gittip.com/assets/widgets/0002.js" ></scr' + 'ipt>');
+      document.write('<script data-gittip-username="' + username + '" src="https://www.gittip.com/assets/widgets/0002.js" ></scr' + 'ipt>');
     </script>
 
     <div>
@@ -65,8 +65,7 @@
         var img = new Image();
         img.src = 'https://www.gittip.com/assets/widgets/heart.gif';
         img.onload = function () {
-          console.log('hi');
-          ctx.drawImage(img, 50, 50);
+          ctx.drawImage(img, Math.round(64 * 4/3), Math.round(31 * 4/3));
         };
       </script>
     </div>
