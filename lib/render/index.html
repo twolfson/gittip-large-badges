@@ -38,7 +38,6 @@
         // Start the rounded rectangle
         context.lineWidth = 2;
         context.font = 'normal 9pt/12pt Lato, sans-serif';
-        context.fillStyle = '#614C3E';
 
         // // Upper-left curve of rounded rectangle
         // context.arc(6 + 1, 6 + 1, 6, Math.PI, 3 * Math.PI / 2);
@@ -53,7 +52,10 @@
           .roundRect(1, 1, width - 2, height - 2, 8)
           .stroke()
           // 9pt left, 6pt top + 12pt line height
-          .fillText('I receive', 9 * 4/3, (6 + 12) * 4/3);
+          .fillStyle('#614C3E')
+          .fillText('I receive', 9 * 4/3, (6 + 12) * 4/3)
+          .fillText('$0.00', 9 * 4/3, (6 + (2 * 12)) * 4/3)
+          .fillText(' / wk', (9 * 4/3) + context.measureText('$0.00').width, (6 + (2 * 12)) * 4/3)
       </script>
     </div>
   </body>
