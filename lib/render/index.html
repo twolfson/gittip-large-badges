@@ -7,6 +7,9 @@
         margin: 0;
         padding: 0;
       }
+      canvas {
+        margin-top: 2px;
+      }
     </style>
   </head>
   <body>
@@ -28,10 +31,17 @@
         canvas.width = width;
         canvas.height = height;
 
-        // Get the context and draw
+        // Get the context
         var context = canvas.getContext('2d');
-        // context.arcTo(6, 6, 0, 0, 6);
-        context.arc(6, 6, 6, Math.PI, 3 * Math.PI / 2);
+
+        // Upper-left curve of rounded rectangle
+        context.lineWidth = 2;
+        context.arc(6 + 1, 6 + 1, 6, Math.PI, 3 * Math.PI / 2);
+        context.stroke();
+
+        // Top edge of rounded rectangle
+        context.moveTo(6, 1);
+        context.lineTo(width - 6 - 1, 1);
         context.stroke();
       </script>
     </div>
