@@ -44,7 +44,6 @@
 
           // Start the rounded rectangle
           context.lineWidth = 2;
-          context.font = 'normal 9pt/12pt Lato, sans-serif';
 
           // // Upper-left curve of rounded rectangle
           // context.arc(6 + 1, 6 + 1, 6, Math.PI, 3 * Math.PI / 2);
@@ -61,16 +60,21 @@
             .roundRect(1, 1, width - 2, height - 2, 8)
             .fillStyle('#FFF')
             .fill()
-            .drawImage(img, Math.round(64 * 4/3), Math.round(31 * 4/3))
+            .drawImage(img, Math.ceil(64 * 4/3), Math.ceil(31 * 4/3))
             .stroke()
             // 9pt left, 6pt top + 12pt line height
             .fillStyle('#614C3E')
+            .font('normal 9pt/12pt Lato, sans-serif')
             .fillText('I receive', 9 * 4/3, (6 + 12) * 4/3)
-            .fillText('$0.00', 9 * 4/3, (6 + (2 * 12)) * 4/3);
+            .font('bold 12pt/14pt Lato, sans-serif')
+            .fillText('$0.00', 9 * 4/3, (6 + 12 + 14) * 4/3);
+
+          var offsetWidth = ctx.measureText('$0.00').width;
 
           ctx
-            .fillText(' / wk', (9 * 4/3) + ctx.measureText('$0.00').width, (6 + (2 * 12)) * 4/3)
-            .fillText('on Gittip.', 9 * 4/3, (6 + (3 * 12)) * 4/3)
+            .font('normal 9pt/12pt Lato, sans-serif')
+            .fillText(' / wk', (9 * 4/3) + offsetWidth, (6 + 12 + 14) * 4/3)
+            .fillText('on Gittip.', 9 * 4/3, (6 + 12 + 14 + 12) * 4/3)
         };
       </script>
     </div>
