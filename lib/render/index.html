@@ -4,31 +4,43 @@
     <title>Badge</title>
     <script src="vendor/canvasquery.js"></script>
     <style>
+      @import url("https://fonts.googleapis.com/css?family=Lato:300,900");
+
       body {
         margin: 0;
         padding: 0;
         background: linen;
       }
+
       canvas {
         margin-top: 2px;
       }
+
       a {
         text-decoration: none;
       }
     </style>
   </head>
   <body>
+    <div>
+      <script>
+        // Find the username from the search
+        var username = window.location.search.slice(1);
+
+        // Synchronously load the widget
+        document.write('<script data-gittip-username="' + username + '" src="https://www.gittip.com/assets/widgets/0002.js" ></scr' + 'ipt>');
+      </script>
+    </div>
+
+    <div>
+      <canvas id="canvas"></canvas>
+    </div>
+
     <script>
       // Find the username from the search
       var username = window.location.search.slice(1);
 
-      // Synchronously load the widget
-      document.write('<script data-gittip-username="' + username + '" src="https://www.gittip.com/assets/widgets/0002.js" ></scr' + 'ipt>');
-    </script>
-
-    <div>
-      <canvas id="canvas"></canvas>
-      <script>
+      // TODO: Use hack to force font loading
       setTimeout(function () {
         // Find the canvas and define the height
         var canvas = document.getElementById('canvas'),
@@ -78,8 +90,8 @@
 
           ctx
             .font('normal 9pt/12pt Lato, sans-serif')
-            .fillStyle('#614C3E')
             .fillText(' / wk', (9 * 4/3) + offsetWidth, (6 + 12 + 14) * 4/3)
+            .fillStyle('#614C3E')
             .fillText('on ', 9 * 4/3, (6 + 12 + 14 + 12) * 4/3)
             .fillStyle('#2A8F79')
             .fillText('Gittip', 9 * 4/3 + ctx.measureText('on ').width, (6 + 12 + 14 + 12) * 4/3)
@@ -87,7 +99,7 @@
             .fillText('.', 9 * 4/3 + ctx.measureText('on Gittip').width, (6 + 12 + 14 + 12) * 4/3)
         };
       }, 1000);
-      </script>
+    </script>
     </div>
   </body>
 </html>
