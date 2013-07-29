@@ -30,6 +30,14 @@ module.exports = function(grunt) {
       'canvas-query': {
         src: 'http://canvasquery.com/canvasquery.js',
         dest: 'lib/render/vendor/canvasquery.js'
+      },
+      'lato-300': {
+        src: 'http://themes.googleusercontent.com/static/fonts/lato/v6/KT3KS9Aol4WfR6Vas8kNcg.woff',
+        dest: 'lib/render/vendor/lato-300.woff'
+      },
+      'lato-900': {
+        src: 'http://themes.googleusercontent.com/static/fonts/lato/v6/BVtM30trf7q_jfqYeHfjtA.woff',
+        dest: 'lib/render/vendor/lato-900.woff'
       }
     },
     watch: {
