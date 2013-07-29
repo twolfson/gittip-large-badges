@@ -44,18 +44,26 @@
       </script>
     </div>
 
-    <p style="font-family: Lato;">a</p>
 
     <div>
       <canvas id="canvas"></canvas>
     </div>
 
+    <!-- DEV: This is for force-loading of font before canvas rendition -->
+    <p id="remove-me" style="font-family: Lato;">a</p>
     <script>
-      // Find the username from the search
-      var username = window.location.search.slice(1);
+      // DEV: Force load of font by pinging URL. When it errors out, we know the resource has loaded.
+      // TODO: Load both bold and non-bold
+      var img = new Image();
+      img.src = 'vendor/lato-900.woff';
+      img.onerror = function () {
+        // Remove the hacked paragraph
+        var removeP = document.getElementById('remove-me');
+        removeP.parentNode.removeChild(removeP);
 
-      // TODO: Use hack to force font loading
-      setTimeout(function () {
+        // Find the username from the search
+        var username = window.location.search.slice(1);
+
         // Find the canvas and define the height
         var canvas = document.getElementById('canvas'),
             width = 116,
@@ -112,7 +120,7 @@
             .fillStyle('#614C3E')
             .fillText('.', 9 * 4/3 + ctx.measureText('on Gittip').width, (6 + 12 + 14 + 12) * 4/3)
         };
-      }, 1000);
+      };
     </script>
     </div>
   </body>
