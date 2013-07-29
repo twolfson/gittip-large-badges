@@ -38,6 +38,10 @@ module.exports = function(grunt) {
       'lato-900': {
         src: 'http://themes.googleusercontent.com/static/fonts/lato/v6/BVtM30trf7q_jfqYeHfjtA.woff',
         dest: 'lib/render/vendor/lato-900.woff'
+      },
+      'gittip-heart': {
+        src: 'https://www.gittip.com/assets/widgets/heart.gif',
+        dest: 'lib/render/vendor/heart.gif'
       }
     },
     watch: {
