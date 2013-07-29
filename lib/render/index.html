@@ -35,17 +35,6 @@
   </head>
   <body>
     <div>
-      <script>
-        // Find the username from the search
-        var username = window.location.search.slice(1);
-
-        // // Synchronously load the widget
-        // document.write('<script data-gittip-username="' + username + '" src="https://www.gittip.com/assets/widgets/0002.js" ></scr' + 'ipt>');
-      </script>
-    </div>
-
-
-    <div>
       <canvas id="canvas"></canvas>
     </div>
 
@@ -61,8 +50,8 @@
         var removeP = document.getElementById('remove-me');
         removeP.parentNode.removeChild(removeP);
 
-        // Find the username from the search
-        var username = window.location.search.slice(1);
+        // Find the receiving from the search
+        var receiving = window.location.search.slice(1) || '0.00';
 
         // Find the canvas and define the height
         var canvas = document.getElementById('canvas'),
@@ -106,9 +95,9 @@
             .fillText('I receive', 9 * 4/3, (6 + 12) * 4/3)
             .font('bold 12pt/14pt Lato, sans-serif')
             .fillStyle('#2A8F79')
-            .fillText('$0.00', 9 * 4/3, (6 + 12 + 14) * 4/3);
+            .fillText('$' + receiving, 9 * 4/3, (6 + 12 + 14) * 4/3);
 
-          var offsetWidth = ctx.measureText('$0.00').width;
+          var offsetWidth = ctx.measureText('$' + receiving).width;
 
           ctx
             .font('normal 9pt/12pt Lato, sans-serif')
