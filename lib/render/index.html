@@ -8,14 +8,14 @@
         font-family: 'Lato';
         font-style: normal;
         font-weight: 300;
-        src: local('Lato Light'), local('Lato-Light'), url(https://themes.googleusercontent.com/static/fonts/lato/v6/KT3KS9Aol4WfR6Vas8kNcg.woff) format('woff');
+        src: local('Lato Light'), local('Lato-Light'), url(vendor/lato-300.woff) format('woff');
       }
 
       @font-face {
         font-family: 'Lato';
         font-style: normal;
         font-weight: 900;
-        src: local('Lato Black'), local('Lato-Black'), url(https://themes.googleusercontent.com/static/fonts/lato/v6/BVtM30trf7q_jfqYeHfjtA.woff) format('woff');
+        src: local('Lato Black'), local('Lato-Black'), url(vendor/lato-900.woff) format('woff');
       }
 
       body {
@@ -39,10 +39,12 @@
         // Find the username from the search
         var username = window.location.search.slice(1);
 
-        // Synchronously load the widget
-        document.write('<script data-gittip-username="' + username + '" src="https://www.gittip.com/assets/widgets/0002.js" ></scr' + 'ipt>');
+        // // Synchronously load the widget
+        // document.write('<script data-gittip-username="' + username + '" src="https://www.gittip.com/assets/widgets/0002.js" ></scr' + 'ipt>');
       </script>
     </div>
+
+    <p style="font-family: Lato;">a</p>
 
     <div>
       <canvas id="canvas"></canvas>
