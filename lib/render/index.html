@@ -108,6 +108,13 @@
             .fillText('Gittip', 9 * 4/3 + ctx.measureText('on ').width, (6 + 12 + 14 + 12) * 4/3)
             .fillStyle('#614C3E')
             .fillText('.', 9 * 4/3 + ctx.measureText('on Gittip').width, (6 + 12 + 14 + 12) * 4/3)
+
+          // If we are on a Phantom page, callback
+          setTimeout(function () {
+            if (window.callPhantom) {
+              window.callPhantom();
+            }
+          }, 500);
         };
       };
     </script>
