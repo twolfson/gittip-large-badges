@@ -26,7 +26,7 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "start": "node lib/gittip-large-badges.js",
+    "start": "node bin/gittip-large-badges",
     "test": "mocha"
   },
   "dependencies": {

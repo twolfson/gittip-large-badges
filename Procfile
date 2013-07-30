@@ -1,1 +1,1 @@
-web: node lib/gittip-large-badges.js
+web: node bin/gittip-large-badges
