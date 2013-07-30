@@ -34,6 +34,7 @@ function badgeRoute (req, res, next) {
 
     // Otherwise, respond with the binary data
     // TODO: Cache
+    // var buff = stdout;
     res.set('Content-Type', 'image/png');
     var buff = new Buffer(stdout, 'base64');
     res.send(buff);
