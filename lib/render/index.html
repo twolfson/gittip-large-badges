@@ -72,43 +72,54 @@
           // Start the rounded rectangle
           context.lineWidth = 2;
 
-          // // Upper-left curve of rounded rectangle
-          // context.arc(6 + 1, 6 + 1, 6, Math.PI, 3 * Math.PI / 2);
-          // context.stroke();
-
-          // // Top edge of rounded rectangle
-          // context.moveTo(6, 1);
-          // context.lineTo(width - 6 - 1, 1);
-          // context.stroke();
-
+          // In the canvas context
           ctx
+            // Draw a clipping mask for the rectange
             .roundRect(1, 1, width - 2, height - 2, 8)
             .clip()
+            // Draw our rectange
             .roundRect(1, 1, width - 2, height - 2, 8)
+
+            // Add a white background to the rectange
             .fillStyle('#FFF')
             .fill()
+
+            // Draw the gittip heart
             .drawImage(img, Math.ceil(64 * 4/3), Math.ceil(31 * 4/3))
+
+            // Stroke the rectangle
             .stroke()
+
             // 9pt left, 6pt top + 12pt line height
+            // Write out the first line
             .font('normal 9pt/12pt Lato, sans-serif')
             .fillStyle('#614C3E')
             .fillText('I receive', 9 * 4/3, (6 + 12) * 4/3)
+
+            // Bolden the second line
             .font('bold 12pt/14pt Lato, sans-serif')
             .fillStyle('#2A8F79')
             .fillText('$' + receiving, 9 * 4/3, (6 + 12 + 14) * 4/3);
 
+          // Offset the remaining text by the boldened amount
           var offsetWidth = ctx.measureText('$' + receiving).width;
-
           ctx
             .font('normal 9pt/12pt Lato, sans-serif')
             .fillText(' / wk', (9 * 4/3) + offsetWidth, (6 + 12 + 14) * 4/3)
+
+            // Draw the third line
             .fillStyle('#614C3E')
             .fillText('on ', 9 * 4/3, (6 + 12 + 14 + 12) * 4/3)
+
+            // with the link in a different color (and calculate offset)
             .fillStyle('#2A8F79')
             .fillText('Gittip', 9 * 4/3 + ctx.measureText('on ').width, (6 + 12 + 14 + 12) * 4/3)
+
+            // and the period in the normal color (and calculate offset)
             .fillStyle('#614C3E')
             .fillText('.', 9 * 4/3 + ctx.measureText('on Gittip').width, (6 + 12 + 14 + 12) * 4/3)
 
+          // Mark the canvas as rendered
           window.canvasRendered = true;
         };
       };
