@@ -75,7 +75,7 @@
           // In the canvas context
           ctx
             // Draw a clipping mask for the rectange
-            .roundRect(1, 1, width - 2, height - 2, 8)
+            .roundRect(0, 0, width, height, 8)
             .clip()
             // Draw our rectange
             .roundRect(1, 1, width - 2, height - 2, 8)
@@ -84,10 +84,11 @@
             .fillStyle('#FFF')
             .fill()
 
-            // Draw the gittip heart
+            // Draw the gittip heart (over the white bg)
             .drawImage(img, Math.ceil(64 * 4/3), Math.ceil(31 * 4/3))
 
-            // Stroke the rectangle
+            // Stroke the rectangle (over the heart)
+            .strokeStyle('#614C3E')
             .stroke()
 
             // 9pt left, 6pt top + 12pt line height
