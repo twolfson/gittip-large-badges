@@ -43,9 +43,9 @@
     <script>
       // DEV: Force load of font by pinging URL. When it errors out, we know the resource has loaded.
       // TODO: Load both bold and non-bold
-      var img = new Image();
-      img.src = 'vendor/lato-900.woff';
-      img.onerror = function () {
+      // var img = new Image();
+      // img.src = 'vendor/lato-900.woff';
+      // img.onerror = function () {
         // Remove the hacked paragraph
         var removeP = document.getElementById('remove-me');
         removeP.parentNode.removeChild(removeP);
@@ -122,7 +122,7 @@
           // Mark the canvas as rendered
           window.canvasRendered = true;
         };
-      };
+      // };
     </script>
     </div>
   </body>
