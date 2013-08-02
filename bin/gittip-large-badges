@@ -2,6 +2,7 @@
 
 // Load in dependencies
 var fs = require('fs'),
+    EventEmitter = require('events').EventEmitter,
     express = require('express'),
     jade = require('jade'),
     LRU = require('lru-cache'),
@@ -22,7 +23,7 @@ app.get('/', function indexRoute (req, res) {
 // Allow for direct testing of render page
 app.use('/render', express['static'](__dirname + '/../lib/render'));
 
-// Badge route sends screenshot of large user badge
+// Define a cache for badges
 var badgeCache = new LRU({
       // Allow up to 100MB
       max: 100 * 1000 * 1000,
@@ -35,6 +36,11 @@ var badgeCache = new LRU({
       // Expire items in 5 minutes
       maxAge: 1000 * 60 * 5
     });
+
+// Define a cache for simultaneous requests for the same user
+var requests = {};
+
+// Badge route sends screenshot of large user badge
 function badgeRoute (req, res, next) {
   // Prepare common endpoint for sending buffer
   function sendBadge(badgeBuff) {
@@ -51,7 +57,17 @@ function badgeRoute (req, res, next) {
     return sendBadge(badge);
   }
 
-  // Otherwise, fetch the badge
+  // If there is a request already out, listen for it to complete
+  var request = requests[username];
+  if (request) {
+    return request.on('complete', sendBadge);
+  }
+
+  // Create an event listener for the request to allow concurrent requests
+  request = new EventEmitter();
+  requests[username] = request;
+
+  // Fetch the badge
   renderBadge(params, function (err, stdout, stderr) {
     // If there was an error, log stderr and callback with it
     if (err) {
@@ -66,6 +82,9 @@ function badgeRoute (req, res, next) {
 
     // Response with the badge
     sendBadge(badgeBuff);
+
+    // Emit that our request has completed
+    request.emit('complete', badgeBuff);
   });
 }
 
