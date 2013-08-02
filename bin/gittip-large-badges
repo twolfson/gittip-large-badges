@@ -4,6 +4,7 @@
 var fs = require('fs'),
     express = require('express'),
     jade = require('jade'),
+    LRU = require('lru-cache'),
     renderBadge = require('../lib/gittip-large-badges');
 
 // Define our app
@@ -22,9 +23,27 @@ app.get('/', function indexRoute (req, res) {
 app.use('/render', express['static'](__dirname + '/../lib/render'));
 
 // Badge route sends screenshot of large user badge
-// semver'd API bitches.
+var badgeCache = new LRU({max: 9000, maxAge: 1000 * 60 * 5});
 function badgeRoute (req, res, next) {
-  renderBadge(req.params, function (err, stdout, stderr) {
+  // Prepare common endpoint for sending buffer
+  function sendBadge(base64Png) {
+    // Respond with the binary data
+    // var buff = stdout;
+    res.set('Content-Type', 'image/png');
+    var buff = new Buffer(base64Png, 'base64');
+    res.send(buff);
+  }
+
+  // If the badge is cached, send it
+  var params = req.params,
+      username = params.username,
+      badge = badgeCache.get(username);
+  if (badge) {
+    return sendBadge(badge);
+  }
+
+  // Otherwise, fetch the badge
+  renderBadge(params, function (err, stdout, stderr) {
     // If there was an error, log stderr and callback with it
     if (err) {
       console.error('PHANTOM STDOUT: ', stdout);
@@ -32,14 +51,15 @@ function badgeRoute (req, res, next) {
       return next(err);
     }
 
-    // Otherwise, respond with the binary data
-    // TODO: Cache
-    // var buff = stdout;
-    res.set('Content-Type', 'image/png');
-    var buff = new Buffer(stdout, 'base64');
-    res.send(buff);
+    // Otherwise, save the badge to the cache
+    badgeCache.set(username, stdout);
+
+    // Response with the badge
+    sendBadge(stdout);
   });
 }
+
+// Semver'd API bitches.
 app.get('/:username', badgeRoute);
 app.get('/1/:username', badgeRoute);
 app.get('/1.0/:username', badgeRoute);
