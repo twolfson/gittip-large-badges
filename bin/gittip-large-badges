@@ -85,6 +85,9 @@ function badgeRoute (req, res, next) {
 
     // Emit that our request has completed
     request.emit('complete', badgeBuff);
+
+    // Delete the emitter now that the cache is filled
+    delete requests[username];
   });
 }
 
