@@ -23,15 +23,24 @@ app.get('/', function indexRoute (req, res) {
 app.use('/render', express['static'](__dirname + '/../lib/render'));
 
 // Badge route sends screenshot of large user badge
-var badgeCache = new LRU({max: 9000, maxAge: 1000 * 60 * 5});
+var badgeCache = new LRU({
+      // Allow up to 100MB
+      max: 100 * 1000 * 1000,
+
+      // Return byte size of buffer
+      length: function (n) {
+        return n.length;
+      },
+
+      // Expire items in 5 minutes
+      maxAge: 1000 * 60 * 5
+    });
 function badgeRoute (req, res, next) {
   // Prepare common endpoint for sending buffer
-  function sendBadge(base64Png) {
+  function sendBadge(badgeBuff) {
     // Respond with the binary data
-    // var buff = stdout;
     res.set('Content-Type', 'image/png');
-    var buff = new Buffer(base64Png, 'base64');
-    res.send(buff);
+    res.send(badgeBuff);
   }
 
   // If the badge is cached, send it
@@ -52,10 +61,11 @@ function badgeRoute (req, res, next) {
     }
 
     // Otherwise, save the badge to the cache
-    badgeCache.set(username, stdout);
+    var badgeBuff = new Buffer(stdout, 'base64');
+    badgeCache.set(username, badgeBuff);
 
     // Response with the badge
-    sendBadge(stdout);
+    sendBadge(badgeBuff);
   });
 }
 
