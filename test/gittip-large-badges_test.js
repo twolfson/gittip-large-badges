@@ -44,14 +44,14 @@ describe('A user', function () {
         this.filename = filename;
 
         // Write the image to the file
-        console.log(this.badgeStr);
+        // console.log(this.badgeStr);
         fs.writeFileSync(actualDir + '/' + filename, this.badgeStr, 'base64');
       });
 
       it('consistent with past images', function (done) {
         // Prepare our command
         var filename = this.filename,
-            cmd = 'imagediff -e ' + actualDir + '/' + filename + ' ' + expectedDir + '/' + filename;
+            cmd = 'imagediff -e ' + expectedDir + '/' + filename + ' ' + expectedDir + '/' + filename;
 
         // Run `imagediff` between expected and actual files
         exec(cmd, function (err, stdout) {
