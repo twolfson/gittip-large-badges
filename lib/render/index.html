@@ -3,21 +3,8 @@
   <head>
     <title>Badge</title>
     <script src="vendor/canvasquery.js"></script>
+    <link ref="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,900"/>
     <style>
-      @font-face {
-        font-family: 'Lato';
-        font-style: normal;
-        font-weight: 300;
-        src: url(vendor/Lato-Lig.ttf) format('truetype');
-      }
-
-      @font-face {
-        font-family: 'Lato';
-        font-style: normal;
-        font-weight: 900;
-        src: url(vendor/Lato-Bla.ttf) format('truetype');
-      }
-
       body {
         margin: 0;
         padding: 0;
@@ -44,7 +31,7 @@
       // DEV: Force load of font by pinging URL. When it errors out, we know the resource has loaded.
       // TODO: Load both bold and non-bold
       var img = new Image();
-      img.src = 'vendor/Lato-Bla.ttf';
+      img.src = 'vendor/lato-900.woff';
       img.onerror = function () {
         // Remove the hacked paragraph
         var removeP = document.getElementById('remove-me');
@@ -93,19 +80,19 @@
 
             // 9pt left, 6pt top + 12pt line height
             // Write out the first line
-            .font('normal 9pt/12pt Lato, sans-serif')
+            .font('normal 9pt/12pt Lato')
             .fillStyle('#614C3E')
             .fillText('I receive', 9 * 4/3, (6 + 12) * 4/3)
 
             // Bolden the second line
-            .font('bold 12pt/14pt Lato, sans-serif')
+            .font('bold 12pt/14pt Lato')
             .fillStyle('#2A8F79')
             .fillText('$' + receiving, 9 * 4/3, (6 + 12 + 14) * 4/3);
 
           // Offset the remaining text by the boldened amount
           var offsetWidth = ctx.measureText('$' + receiving).width;
           ctx
-            .font('normal 9pt/12pt Lato, sans-serif')
+            .font('normal 9pt/12pt Lato')
             .fillText(' / wk', (9 * 4/3) + offsetWidth, (6 + 12 + 14) * 4/3)
 
             // Draw the third line
