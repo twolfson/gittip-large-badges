@@ -1,6 +1,8 @@
-# gittip-large-badges  [![Donate on Gittip](http://badgr.co/gittip/twolfson.png)](https://www.gittip.com/twolfson/) 
+# gittip-large-badges [![Build status](https://travis-ci.org/twolfson/gittip-large-badges.png?branch=master)](https://travis-ci.org/twolfson/gittip-large-badges)
 
 Generate large badges for Gittip.
+
+Donations accepted via Gittip: [![Donate on Gittip](http://badgr.co/gittip/twolfson.png)](https://www.gittip.com/twolfson/)
 
 ## Getting Started
 Install the module with: `npm install gittip-large-badges`
