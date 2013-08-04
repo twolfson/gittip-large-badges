@@ -44,6 +44,7 @@ describe('A user', function () {
         this.filename = filename;
 
         // Write the image to the file
+        console.log(this.badgeStr);
         fs.writeFileSync(actualDir + '/' + filename, this.badgeStr, 'base64');
       });
 
